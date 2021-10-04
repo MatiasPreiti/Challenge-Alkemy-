@@ -2,16 +2,18 @@ const jwt = require('jsonwebtoken');
 
 const privateKey = 'supersecureKey';
 
-exports.generateToken = (info) => {
+function generateToken(info) {
     return jwt.sign(info, privateKey);
 };
 
-exports.validateToken = (token) => {
+function validateToken(token) {
     try {
         return jwt.verify(token, privateKey, {
             expiresIn: "1h"
         });
-    } catch(error) {
+    } catch (error) {
         return false;
     }
 };
+
+module.exports = { generateToken, validateToken }

@@ -1,6 +1,6 @@
-const {validateToken} = require('../util/jwt');
+const {validateToken} = require('../utils/jwt');
 
-exports.validateAccessToken = (req, res, next) => {
+function validateAccessToken(req, res, next) {
     if (!req.headers.authorization) {
         res.status(401).json({
             success: false,
@@ -21,3 +21,5 @@ exports.validateAccessToken = (req, res, next) => {
         });
     }
 };
+
+module.exports = { validateAccessToken }
