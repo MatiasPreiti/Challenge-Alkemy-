@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class genre extends Model {
     /**
@@ -11,31 +9,32 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       genre.belongsTo(models.movies);
-      genre.hasMany(models.movies,
-        {
-            as: 'asociatedmovie',
-            foreignKey: 'movies',
-        }
-      );
+      genre.hasMany(models.movies, {
+        as: "asociatedmovie",
+        foreignKey: "movies",
+      });
     }
-  };
-  genre.init({
-    name: { type: DataTypes.STRING, allowNull: false, unique: true },
-    image: DataTypes.STRING,
-    asociatedmovies: {
-      allowNull: true,
-      type: DataTypes.STRING,
-      references: {
-        model: {
-          tableName: 'movies',
-          schema: 'disneydb'
+  }
+  genre.init(
+    {
+      name: { type: DataTypes.STRING, allowNull: false, unique: true },
+      image: DataTypes.STRING,
+      asociatedmovies: {
+        allowNull: true,
+        type: DataTypes.STRING,
+        references: {
+          model: {
+            tableName: "movies",
+            schema: "disneydb",
+          },
+          key: "title",
         },
-        key: 'title'
-      }
+      },
+    },
+    {
+      sequelize,
+      modelName: "genre",
     }
-  }, {
-    sequelize,
-    modelName: 'genre',
-  });
+  );
   return genre;
 };

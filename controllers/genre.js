@@ -1,5 +1,5 @@
 const { QueryTypes } = require("sequelize");
-const db = require("../models/index");
+const { db } = require("../models/index");
 
 // GET
 async function getGenre(req, res) {

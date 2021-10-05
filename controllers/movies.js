@@ -1,4 +1,4 @@
-const db = require("../models/index");
+const { db } = require("../models/index");
 const { QueryTypes } = require("sequelize");
 
 // GET MOVIES (LIST WITH TITLE AND GENRE)

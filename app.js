@@ -1,14 +1,18 @@
 const express = require("express");
 const morgan = require("morgan");
 require("dotenv").config();
-const slash = require('express-slash');
-const { errorHandler, wrapErrors, logErrors} = require('./middlewares/errorHandlers');
-const { notFoundHandler } = require ('./middlewares/notFoundHandler')
+const slash = require("express-slash");
+const {
+  errorHandler,
+  wrapErrors,
+  logErrors,
+} = require("./middlewares/errorHandlers");
+const { notFoundHandler } = require("./middlewares/notFoundHandler");
 
-const moviesRoutes = require('./router/movies');
-const characterRoutes = require('./router/character');
-const genreRoutes = require('./router/genre');
-const userRoutes = require('./router/users');
+const moviesRoutes = require("./router/movies");
+const characterRoutes = require("./router/character");
+const genreRoutes = require("./router/genre");
+const userRoutes = require("./router/users");
 
 // Set up express app
 const app = express();
@@ -18,8 +22,8 @@ app.use(express.json());
 
 //router.
 const router = express.Router({
-    caseSensitive: app.get('case sensitive routing'),
-    strict: app.get('strict routing')
+  caseSensitive: app.get("case sensitive routing"),
+  strict: app.get("strict routing"),
 });
 router.use("/movies", moviesRoutes, () => console.log());
 router.use("/characters", characterRoutes);

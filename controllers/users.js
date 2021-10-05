@@ -4,7 +4,7 @@ const { QueryTypes } = require("sequelize");
 
 const sendMail = require("../middlewares/sendMail");
 
-const db = require("../models/index");
+const { db } = require("../models/index");
 const { passVerify } = require("../middlewares/user.password");
 const tokenRounds = 10;
 
