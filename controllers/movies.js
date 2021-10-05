@@ -10,43 +10,43 @@ async function getMovies(req, res) {
       const queryResponse = await db.query("SELECT image, title FROM movies", {
         type: QueryTypes.SELECT,
       });
-      res.json(movies);
+      res.json(queryResponse);
     }
 
     if (genreMovie && title) {
-      let = await db.query(
+      let queryResponse = await db.query(
         "SELECT image, title FROM movies WHERE genreMovie = ? AND title = ?",
         {
           type: QueryTypes.SELECT,
           replacements: [genreMovie, title],
         }
       );
-      res.json({ response });
+      res.json({ queryResponse });
     }
 
     // FILTER BY TITLE
     if (title && !genreMovie) {
       const movieTittle = "%" + title + "%";
-      let response = await db.query(
+      let queryResponse = await db.query(
         "SELECT image, title FROM movies WHERE title LIKE ?",
         {
           type: QueryTypes.SELECT,
           replacements: [movieTittle],
         }
       );
-      res.json({ response });
+      res.json({ queryResponse });
     }
 
     // FILTER BY GENRE
     if (genreMovie && !title) {
-      let response = await db.query(
+      let queryResponse = await db.query(
         "SELECT image, title FROM movies WHERE genreMovie = ?",
         {
           type: QueryTypes.SELECT,
           replacements: [genreMovie],
         }
       );
-      res.json({ response });
+      res.json({ queryResponse });
     }
   } catch (err) {
     console.error(err);
@@ -137,7 +137,7 @@ async function editMovie(req, res) {
       genreMovie,
     } = req.body;
 
-    const movie = db.query(
+    const queryResponse = db.query(
       "UPDATE movies SET image = ?, title = ?, calification = ?, dateCreation = ?, characterAsociated = ?, genremovie = ?)",
       {
         type: QueryTypes.UPDATE,
@@ -153,8 +153,8 @@ async function editMovie(req, res) {
     );
     res.status(200).json({
       success: true,
-      msg: `movie ${title} is updated succesfully`,
-      movie: movie,
+      msg: `movie ${queryResponse.title} is updated succesfully`,
+      movie: queryResponse,
     });
   } catch (err) {
     console.error(err);

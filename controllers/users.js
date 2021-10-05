@@ -4,7 +4,6 @@ const { QueryTypes } = require("sequelize");
 
 const sendMail = require("../middlewares/sendMail");
 
-const { generateToken } = require("../util/jwt");
 const db = require("../models/index");
 const { passVerify } = require("../middlewares/user.password");
 const tokenRounds = 10;

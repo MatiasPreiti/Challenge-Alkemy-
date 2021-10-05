@@ -4,6 +4,7 @@ require("dotenv").config();
 const moviesRoutes = require("./router/movies");
 const genreRoutes = require("./router/genre");
 const characterRoutes = require("./router/character");
+const userRoutes = require ('./router/users')
 
 // Set up express app
 const app = express();
@@ -16,10 +17,10 @@ const router = express.Router();
 router.use("/movies", moviesRoutes);
 router.use("/characters", characterRoutes);
 router.use("/genre", genreRoutes);
+router.use("/user", userRoutes);
 
 //port
-const port = parseInt(process.env.PORT, 10) || 8000;
+const port = parseInt(process.env.PORT) || 8000;
 app.set("port", port);
-server.listen(port, () => console.log("app escuchando en puerto " + port));
 
 module.exports = app;

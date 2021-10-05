@@ -37,10 +37,9 @@ async function getCharacterByName(req, res) {
 // CREATE CHARACTER
 async function createCharacter(req, res) {
   try {
-    const character = req.body;
     const { image, name, age, weight, history } = req.body;
 
-    const character = await db.query(
+    const queryResponse = await db.query(
       "INSERT INTO characters (image, name, age, weight, history) VALUES (?, ?, ?, ? ,?)",
       {
         type: QueryTypes.INSERT,
@@ -50,7 +49,7 @@ async function createCharacter(req, res) {
     res.status(201).json({
       success: true,
       msg: "The character was created successfully",
-      character: character,
+      character: queryResponse,
     });
   } catch (err) {
     console.error(err);
@@ -66,11 +65,10 @@ async function createCharacter(req, res) {
 
 async function updateCharacter(req, res) {
   try {
-    const character = req.body;
     const { id } = req.params;
     const { image, name, age, weight, history } = req.body;
 
-    const chharacter = await db.query(
+    const character = await db.query(
       "UPDATE characters SET image = ?, name = ?, age = ?, weight = ?, history = ? WHERE id = ?",
       {
         type: QueryTypes.UPDATE,
