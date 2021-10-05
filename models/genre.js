@@ -20,10 +20,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   genre.init({
-    name: DataTypes.STRING,
+    name: { type: DataTypes.STRING, allowNull: false, unique: true },
     image: DataTypes.STRING,
     asociatedmovies: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.STRING,
       references: {
         model: {

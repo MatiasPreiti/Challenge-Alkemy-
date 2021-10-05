@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class character extends Model {
     /**
@@ -11,34 +9,35 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       character.belongsTo(models.movies);
-      character.hasMany(models.movies,
-        {
-            as: 'moviesA',
-            foreignKey: 'moviesAsociated',
-        }
-      );
+      character.hasMany(models.movies, {
+        as: "moviesA",
+        foreignKey: "moviesAsociated",
+      });
     }
-  };
-  character.init({
-    name: DataTypes.STRING,
-    image: DataTypes.STRING,
-    age: DataTypes.INTEGER,
-    weight: DataTypes.INTEGER,
-    history: DataTypes.STRING,
-    movies: {
-      allowNull: false,
-      type: DataTypes.STRING,
-      references: {
-        model: {
-          tableName: 'movies',
-          schema: 'disneydb'
+  }
+  character.init(
+    {
+      name: { type: DataTypes.STRING, allowNull: false, unique: true },
+      image: { type: DataTypes.STRING, allowNull: false },
+      age: DataTypes.INTEGER,
+      weight: DataTypes.INTEGER,
+      history: DataTypes.STRING,
+      movies: {
+        allowNull: true,
+        type: DataTypes.STRING,
+        references: {
+          model: {
+            tableName: "movies",
+            schema: "disneydb",
+          },
+          key: "title",
         },
-        key: 'title'
-      }
+      },
+    },
+    {
+      sequelize,
+      modelName: "character",
     }
-  }, {
-    sequelize,
-    modelName: 'character',
-  });
+  );
   return character;
 };
