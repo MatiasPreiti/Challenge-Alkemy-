@@ -1,5 +1,5 @@
 const userController = require("../controllers/users");
-const { validateAccessToken } = require('../middlewares/valideteToken');
+const { validateAccessToken } = require("../middlewares/valideteToken");
 
 module.exports = (app) => {
   app.get("/", userController.getAllUsers);

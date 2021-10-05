@@ -1,5 +1,5 @@
 const moviesController = require("../controllers/movies");
-const { validateAccessToken } = require('../middlewares/valideteToken');
+const { validateAccessToken } = require("../middlewares/valideteToken");
 
 module.exports = (app) => {
   app.get("/", validateAccessToken, moviesController.getMovies);

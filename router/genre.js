@@ -1,5 +1,5 @@
 const genreController = require("../controllers/genre");
-const { validateAccessToken } = require('../middlewares/valideteToken');
+const { validateAccessToken } = require("../middlewares/valideteToken");
 
 module.exports = (app) => {
   app.get("/", validateAccessToken, genreController.getGenre);

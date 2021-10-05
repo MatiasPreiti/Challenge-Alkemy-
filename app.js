@@ -1,10 +1,9 @@
 const express = require("express");
 const morgan = require("morgan");
+require("dotenv").config();
 const moviesRoutes = require("./router/movies");
 const genreRoutes = require("./router/genre");
 const characterRoutes = require("./router/character");
-
-const http = require("http");
 
 // Set up express app
 const app = express();
@@ -21,7 +20,6 @@ router.use("/genre", genreRoutes);
 //port
 const port = parseInt(process.env.PORT, 10) || 8000;
 app.set("port", port);
-const server = http.createServer(app);
 server.listen(port, () => console.log("app escuchando en puerto " + port));
 
 module.exports = app;
